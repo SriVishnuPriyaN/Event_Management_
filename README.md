@@ -1,5 +1,3 @@
----
-
 # 🎉 Event Management System (Flask Web App)
 
 ## 📌 Project Overview
@@ -147,18 +145,5 @@ Werkzeug
 * Email notifications
 * Admin dashboard
 * Deployment on cloud (AWS / Render / Railway)
-
----
-
-## 👩‍💻 Author
-
-**Vishnu Priya**
-Flask Web Application Developer
-
----
-
-## 📄 License
-
-This project is for **educational purposes**.
 
 ---
