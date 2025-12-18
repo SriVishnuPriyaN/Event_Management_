@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="mb-4">{% if resource %}Edit Resource{% else %}Add New Resource{% endif %}</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="resource_name">Resource Name</label>
+            <input type="text" class="form-control" id="resource_name" name="resource_name" value="{{ resource.resource_name if resource else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="resource_type">Resource Type</label>
+            <input type="text" class="form-control" id="resource_type" name="resource_type" value="{{ resource.resource_type if resource else '' }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">{% if resource %}Update Resource{% else %}Add Resource{% endif %}</button>
+        <a href="{{ url_for('list_resources') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="mb-4">Allocate Resources to Events</h1>
+
+    <form method="POST" class="mb-4">
+        <div class="form-group">
+            <label for="event_id">Select Event</label>
+            <select class="form-control" id="event_id" name="event_id" required>
+                {% for event in events %}
+                    <option value="{{ event.event_id }}">{{ event.title }} ({{ event.start_time }} - {{ event.end_time }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="resource_id">Select Resource</label>
+            <select class="form-control" id="resource_id" name="resource_id" required>
+                {% for resource in resources %}
+                    <option value="{{ resource.resource_id }}">{{ resource.resource_name }} ({{ resource.resource_type }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Allocate Resource</button>
+    </form>
+
+    <h2 class="mt-5 mb-3">Current Allocations</h2>
+    {% if allocations %}
+        <ul class="list-group">
+            {% for allocation in allocations %}
+                <li class="list-group-item">
+                    Event: <strong>{{ allocation.event.title }}</strong> - Resource: <strong>{{ allocation.resource.resource_name }}</strong> ({{ allocation.resource.resource_type }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No resources allocated yet.</p>
+    {% endif %}
+{% endblock %}

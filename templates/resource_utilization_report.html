@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="mb-4">Resource Utilization Report</h1>
+
+    <form method="POST" class="mb-4">
+        <div class="form-row">
+            <div class="col">
+                <label for="start_date">Start Date</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date.strftime('%Y-%m-%d') if start_date else '' }}">
+            </div>
+            <div class="col">
+                <label for="end_date">End Date</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date.strftime('%Y-%m-%d') if end_date else '' }}">
+            </div>
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn btn-primary">Generate Report</button>
+            </div>
+        </div>
+    </form>
+
+    {% if report_data %}
+        <h2 class="mt-5 mb-3">Report Data</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Type</th>
+                    <th>Total Hours Utilized</th>
+                    <th>Upcoming Bookings</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in report_data %}
+                    <tr>
+                        <td>{{ data.resource_name }}</td>
+                        <td>{{ data.resource_type }}</td>
+                        <td>{{ data.total_hours_utilized }} hours</td>
+                        <td>
+                            {% if data.upcoming_bookings %}
+                                <ul>
+                                    {% for event in data.upcoming_bookings %}
+                                        <li>{{ event.title }} ({{ event.start_time }} to {{ event.end_time }})</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                No upcoming bookings.
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No report data to display. Please select a date range and generate the report.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentify</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="light-mode">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Momentify</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('list_events') }}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('list_resources') }}">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('allocate_resource') }}">Allocate Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('resource_utilization_report') }}">Resource Utilization</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                {% if session.get('user_id') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('profile') }}" title="Profile ({{ session.get('username') }})">
+                        {% if session.get('user_id') %}
+                            {% set user = User.query.get(session['user_id']) %}
+                            {% if user and user.profile_pic %}
+                                <img src="{{ url_for('static', filename='profile_pics/' + user.profile_pic) }}" alt="Profile" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+                            {% else %}
+                                <i class="fas fa-user"></i>
+                            {% endif %}
+                        {% else %}
+                            <i class="fas fa-user"></i>
+                        {% endif %}
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="dark-mode-toggle">
+                        <i class="fas fa-moon"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% if request.endpoint == 'home' %}
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 class="display-4">Welcome to Momentify!</h1>
+                <p class="lead">Your comprehensive solution for scheduling events and allocating resources seamlessly.</p>
+                <hr class="my-4">
+                <p>Organize workshops, seminars, and classes with powerful conflict detection and resource utilization reports.</p>
+                <a class="btn btn-light btn-lg" href="{{ url_for('list_events') }}" role="button">View Events</a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('dark-mode-toggle');
+            const body = document.body;
+
+            // Load saved preference or default to light mode
+            const savedMode = localStorage.getItem('dark-mode');
+            if (savedMode) {
+                body.classList.remove('light-mode', 'dark-mode');
+                body.classList.add(savedMode);
+            } else {
+                body.classList.add('light-mode');
+            }
+
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (body.classList.contains('light-mode')) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('dark-mode', 'dark-mode');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    localStorage.setItem('dark-mode', 'light-mode');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

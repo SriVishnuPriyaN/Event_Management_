@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="mb-4">{% if event %}Edit Event{% else %}Add New Event{% endif %}</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ event.title if event else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="start_time">Start Time</label>
+            <input type="datetime-local" class="form-control" id="start_time" name="start_time" value="{{ event.start_time.isoformat() if event else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="end_time">End Time</label>
+            <input type="datetime-local" class="form-control" id="end_time" name="end_time" value="{{ event.end_time.isoformat() if event else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3">{{ event.description if event else '' }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">{% if event %}Update Event{% else %}Add Event{% endif %}</button>
+        <a href="{{ url_for('list_events') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

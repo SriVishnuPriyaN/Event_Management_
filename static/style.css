@@ -1,0 +1,303 @@
+body {
+    font-family: 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #ffffff; /* White background for light mode */
+    color: #343a40;
+}
+
+.navbar {
+    background-color: #ffffff !important; /* White navbar for light mode */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: #8a2be2 !important; /* Purple brand for light mode */
+}
+
+.nav-link {
+    color: #495057 !important;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    color: #8a2be2 !important; /* Purple hover for light mode */
+}
+
+.jumbotron {
+    background-color: #4A148C; /* Significantly darker purple for better contrast */
+    color: #ffffff; /* Explicitly set white text on jumbotron */
+    padding: 3rem 3rem; /* Further reduced vertical padding */
+    margin-bottom: 0; /* Remove bottom margin */
+    border-radius: 0; /* Remove border-radius for full width */
+    text-shadow: none; /* Ensuring no text shadow */
+}
+
+.jumbotron .display-4 {
+    font-size: 3.5rem; /* Slightly smaller main heading */
+    font-weight: 800; /* Extra bold for impact */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: #ffffff; /* Ensure title is white */
+    letter-spacing: 0.05rem; /* Add a little letter spacing for presence */
+}
+
+.jumbotron .lead {
+    font-size: 1.5rem; /* Slightly smaller lead text */
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    color: #ffffff; /* Ensure lead text is white */
+}
+
+.jumbotron p {
+    font-size: 1.1rem; /* Slightly smaller paragraph text */
+    margin-bottom: 2rem;
+    color: #ffffff; /* Ensure paragraph text is white */
+}
+
+.jumbotron hr {
+    border-top: 2px solid rgba(255, 255, 255, 0.8); /* Thicker and more opaque HR */
+    width: 60%; /* Shorter HR */
+    margin: 2rem auto;
+}
+
+.jumbotron .btn-light {
+    background-color: #ffffff;
+    color: #4A148C; /* Matching the darker purple */
+    border-radius: 50px; /* Pill-shaped button */
+    padding: 0.8rem 2rem; /* Reduced padding for button */
+    font-size: 1.1rem; /* Reduced button text size */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Button shadow */
+}
+
+.jumbotron .btn-light:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px); /* More pronounced lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.container {
+    max-width: 960px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #8a2be2; /* Purple headings for light mode */
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #8a2be2;
+    border-color: #8a2be2;
+}
+
+.btn-primary:hover {
+    background-color: #6a1aae;
+    border-color: #6a1aae;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
+.btn-purple-delete {
+    background-color: #8a2be2; /* Light mode purple */
+    border-color: #8a2be2;
+    color: #ffffff;
+}
+
+.btn-purple-delete:hover {
+    background-color: #6a1aae;
+    border-color: #6a1aae;
+    color: #ffffff;
+}
+
+/* Dark Mode for purple delete button */
+body.dark-mode .btn-purple-delete {
+    background-color: #9C27B0; /* Dark mode brighter purple */
+    border-color: #9C27B0;
+    color: #ffffff;
+}
+
+body.dark-mode .btn-purple-delete:hover {
+    background-color: #7B1FA2;
+    border-color: #7B1FA2;
+    color: #ffffff;
+}
+
+.list-group-item {
+    border: 1px solid #e9ecef;
+    margin-bottom: 10px;
+    border-radius: .25rem;
+    background-color: #ffffff;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.form-control {
+    border-radius: .25rem;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-color: #ffeeba;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.card {
+    border: none; /* Remove default bootstrap border */
+    border-radius: .75rem; /* More rounded card corners */
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-weight: 700; /* Bolder card titles */
+    margin-bottom: 1rem;
+    color: #8a2be2; /* Ensure purple color */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1a1a1a; /* Black background for dark mode */
+    color: #ecf0f1;
+}
+
+body.dark-mode .navbar {
+    background-color: #1a1a1a !important; /* Black navbar for dark mode */
+    border-bottom-color: #343a40;
+}
+
+body.dark-mode .navbar-brand {
+    color: #4A148C !important; /* Matching the darker purple */
+}
+
+body.dark-mode .nav-link {
+    color: #ecf0f1 !important;
+}
+
+body.dark-mode .nav-link:hover {
+    color: #4A148C !important; /* Matching the darker purple */
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+    color: #4A148C; /* Matching the darker purple */
+}
+
+body.dark-mode .jumbotron {
+    background-color: #4A148C !important; /* Significantly darker purple for dark mode */
+    color: #ffffff;
+    text-shadow: none; /* Ensuring no text shadow */
+}
+
+body.dark-mode .jumbotron .display-4,
+body.dark-mode .jumbotron .lead,
+body.dark-mode .jumbotron p {
+    color: #ffffff;
+}
+
+body.dark-mode .jumbotron hr {
+    border-top: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .jumbotron .btn-light {
+    background-color: #ffffff;
+    color: #4A148C; /* Matching the darker purple */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .jumbotron .btn-light:hover {
+    background-color: #f0f0f0;
+    color: #4A148C; /* Matching the darker purple */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .card {
+    background-color: #333333; /* Darker grey for cards in dark mode */
+    border-color: #444444;
+    color: #ecf0f1;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .card-title {
+    color: #9C27B0; /* Brighter purple for dark mode card titles */
+}
+
+body.dark-mode .list-group-item {
+    background-color: #333333; /* Darker grey for list items in dark mode */
+    border-color: #444444;
+    color: #ecf0f1;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .form-control {
+    background-color: #444444;
+    border-color: #555555;
+    color: #ecf0f1;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #bdc3c7;
+}
+
+body.dark-mode .table {
+    color: #ecf0f1;
+}
+
+body.dark-mode .table thead th {
+    background-color: #34495e;
+    border-bottom-color: #2c3e50;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #673AB7; /* Brighter purple for dark mode buttons */
+    border-color: #673AB7;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: #5E35B1;
+    border-color: #5E35B1;
+}

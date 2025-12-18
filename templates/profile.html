@@ -1,0 +1,156 @@
+{% extends "base.html" %} {% block content %}
+<div class="text-center mb-4">
+  <!-- Profile Picture with edit icon -->
+  <div class="position-relative d-inline-block">
+    <img
+      src="{{ url_for('static', filename='profile_pics/' + user.profile_pic) }}"
+      alt="Profile Picture"
+      class="rounded-circle"
+      style="width: 150px; height: 150px; object-fit: cover; cursor: pointer"
+      id="profile-pic-display"
+    />
+    <!-- Edit icon in bottom-right corner -->
+    <span
+      id="profile-edit-icon"
+      style="
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #8a2be2;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+      "
+      title="Edit profile details"
+    >
+      <i class="fas fa-pencil-alt"></i>
+    </span>
+  </div>
+
+  <!-- Username -->
+  <h1 class="mb-4 mt-2">{{ user.username }}'s Profile</h1>
+
+  <!-- Hidden Upload Form -->
+  <form
+    id="profile-pic-form"
+    action="{{ url_for('upload_profile_pic') }}"
+    method="POST"
+    enctype="multipart/form-data"
+    style="display: none"
+  >
+    <input type="file" name="file" id="profile-pic-input" accept="image/*" />
+  </form>
+</div>
+
+<!-- Edit section: personal details (shown when clicking edit icon) -->
+<div id="edit-section" class="container mt-4" style="display: none">
+  <h2 class="mb-3">Personal Details</h2>
+  <form method="POST" action="{{ url_for('profile') }}">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        value="{{ user.username }}"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="mobile">Mobile Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="mobile"
+        name="mobile"
+        value="{{ mobile }}"
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="address">Address</label>
+      <textarea
+        class="form-control"
+        id="address"
+        name="address"
+        rows="3"
+      >{{ address }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+  </form>
+</div>
+
+<!-- Events created by this user, shown as cards -->
+<div class="container mt-4">
+  <h2 class="mb-3">Your Events</h2>
+  {% if user_events %}
+  <div class="row">
+    {% for event in user_events %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.title }}</h5>
+          <p class="card-text mb-1">
+            <small class="text-muted">
+              {{ event.start_time }}<br />
+              to {{ event.end_time }}
+            </small>
+          </p>
+          {% if event.description %}
+          <p class="card-text mt-2">
+            {{ event.description }}
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>You haven't created any events yet.</p>
+  {% endif %}
+</div>
+
+<script>
+  const pic = document.getElementById("profile-pic-display");
+  const input = document.getElementById("profile-pic-input");
+  const editIcon = document.getElementById("profile-edit-icon");
+  const editSection = document.getElementById("edit-section");
+
+  // Click on picture -> change pic
+  if (pic && input) {
+    pic.addEventListener("click", function () {
+      input.click();
+    });
+  }
+
+  if (input) {
+    input.addEventListener("change", function () {
+      document.getElementById("profile-pic-form").submit();
+    });
+  }
+
+  // Click on edit icon -> show personal details form
+  if (editIcon && editSection) {
+    editIcon.addEventListener("click", function (e) {
+      e.stopPropagation();
+      editSection.style.display = "block";
+      editSection.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+</script>
+
+<div class="container mt-4 text-right">
+  <h6 class="mb-2">Account Actions</h6>
+  <a href="{{ url_for('logout') }}" class="btn btn-sm btn-danger px-3">
+    Logout
+  </a>
+</div>
+{% endblock %}
