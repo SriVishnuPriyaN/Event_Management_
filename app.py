@@ -14,6 +14,10 @@ app.config.from_mapping(
     UPLOAD_FOLDER='static/profile_pics' # New upload folder configuration
 )
 
+# Ensure required directories exist (instance for SQLite, upload folder for profile pics)
+os.makedirs(app.instance_path, exist_ok=True)
+os.makedirs(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']), exist_ok=True)
+
 db = SQLAlchemy(app)
 
 class User(db.Model):
