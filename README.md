@@ -143,5 +143,3 @@ Flask-SQLAlchemy
 * Email notifications
 * Admin dashboard
 * Deployment on cloud (AWS / Render / Railway)
-
----
